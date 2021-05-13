@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_app/models/task_data.dart';
 import 'package:todoey_app/widgets/add_task.dart';
 import 'package:todoey_app/widgets/task_list.dart';
+import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -12,7 +14,14 @@ class TasksScreen extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
-                context: context, builder: (context) => AddTaskWidget());
+                context: context,
+                builder: (context) => AddTaskWidget((newTaskTitle) {
+                      // setState(() {
+                      //   Provider.of<TaskData>(context)
+                      //       .tasks
+                      //       .add(Task(name: newTaskTitle));
+                      // });
+                    }));
           },
           backgroundColor: Colors.lightBlueAccent,
           child: Icon(
@@ -48,7 +57,7 @@ class TasksScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${Provider.of<TaskData>(context).tasks.length} Tasks',
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
                 ),
               ],

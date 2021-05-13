@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AddTaskWidget extends StatelessWidget {
+  final Function addFunctionCallback;
+
+  AddTaskWidget(this.addFunctionCallback);
+
   final ButtonStyle flatButtonStyle = TextButton.styleFrom(
     backgroundColor: Colors.lightBlueAccent,
     minimumSize: Size(88, 36),
@@ -12,6 +16,7 @@ class AddTaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String taskValue;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -33,13 +38,17 @@ class AddTaskWidget extends StatelessWidget {
             ),
             Flexible(
                 child: TextField(
+              onChanged: (value) {
+                taskValue = value;
+              },
               autofocus: true,
               textAlign: TextAlign.center,
             )),
             TextButton(
                 style: flatButtonStyle,
                 onPressed: () {
-                  //pressed
+                  addFunctionCallback(taskValue);
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'Add',
