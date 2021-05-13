@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_app/models/task_data.dart';
 
 class AddTaskWidget extends StatelessWidget {
-  final Function addFunctionCallback;
-
-  AddTaskWidget(this.addFunctionCallback);
-
   final ButtonStyle flatButtonStyle = TextButton.styleFrom(
     backgroundColor: Colors.lightBlueAccent,
     minimumSize: Size(88, 36),
@@ -47,7 +45,8 @@ class AddTaskWidget extends StatelessWidget {
             TextButton(
                 style: flatButtonStyle,
                 onPressed: () {
-                  addFunctionCallback(taskValue);
+                  Provider.of<TaskData>(context, listen: false)
+                      .addNewTask(taskValue);
                   Navigator.pop(context);
                 },
                 child: Text(

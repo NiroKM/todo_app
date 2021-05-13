@@ -14,14 +14,7 @@ class TasksScreen extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
-                context: context,
-                builder: (context) => AddTaskWidget((newTaskTitle) {
-                      // setState(() {
-                      //   Provider.of<TaskData>(context)
-                      //       .tasks
-                      //       .add(Task(name: newTaskTitle));
-                      // });
-                    }));
+                context: context, builder: (context) => AddTaskWidget());
           },
           backgroundColor: Colors.lightBlueAccent,
           child: Icon(
@@ -57,7 +50,7 @@ class TasksScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '${Provider.of<TaskData>(context).tasks.length} Tasks',
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
                 ),
               ],
